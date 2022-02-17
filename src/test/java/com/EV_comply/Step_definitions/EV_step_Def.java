@@ -5,10 +5,6 @@ import com.EV_comply.Utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
-
 import java.util.List;
 
 public class EV_step_Def extends BasePage {
@@ -39,9 +35,10 @@ public class EV_step_Def extends BasePage {
     }
 
     @Then("the user can see following links")
-    public void the_user_can_see_following_links(List<String> expectedOptions) {
+    public void the_user_can_see_following_links(List<String> expectedFooters) {
 
-        BasePage.footLinksDisplayValidator(expectedOptions);
+          Assert.assertEquals(expectedFooters,footerLinksValidator());
+
     }
 
     @Then("the user should be the page and click {string}")
@@ -60,9 +57,6 @@ public class EV_step_Def extends BasePage {
 
     @Then("the user can see the following mobile apps")
    public void the_user_can_see_the_following_mobile_apps(List<String> expectedApps) throws InterruptedException {
-
-
-      Thread.sleep(2000);
 
       for (int i = 0; i < linkForMobileApps.size(); i++) {
           Assert.assertEquals(linkForMobileApps.get(i).getText(), expectedApps.get(i));
